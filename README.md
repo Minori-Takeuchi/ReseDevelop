@@ -1,12 +1,14 @@
 # Rese -飲食店予約サービス-  
 
 *トップ画面*
-
+![home](https://user-images.githubusercontent.com/119908511/233911113-c72da708-ac41-4641-aa20-e3cc0f986b7b.png)
 
 *マイページ*
+![myPage](https://user-images.githubusercontent.com/119908511/233911134-ac7e5f16-6e74-4915-91b6-44c40afb768d.png)
 
 
 *店舗詳細・予約画面*
+![detail](https://user-images.githubusercontent.com/119908511/233911150-dc8c99b9-fcc5-4407-9048-58b55239adc0.png)
 
 
 
@@ -61,9 +63,11 @@ firebase: 9.19.1
 
 
 ## テーブル設計
+![tables](https://user-images.githubusercontent.com/119908511/233911233-42fbbd3e-9f8d-4776-ad77-9c7d6a7b7b27.png)
 
 
 ## ER図
+![ER](https://user-images.githubusercontent.com/119908511/233911244-2001d6ac-b3aa-4f40-8ab0-15ad10ca4704.png)
 
 
 ## 環境構築
