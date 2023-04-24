@@ -1,0 +1,57 @@
+# docker-compose
+version: "3.7"
+services:
+  frontend:
+    build: ./frontend
+    environment:
+      - NODE_ENV=development
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
+      - API_ENDPOINT=http://backend:8000
+    volumes:
+      - ./frontend:/usr/src/app:cached
+    command: sh -c 'yarn install && yarn run dev'
+    ports:
+      - '3000:3000'
+    tty: true
+    env_file:
+      - ./frontend/.env
+    networks:
+      - app-network
+    
+  backend:
+    build:
+      context: ./backend
+    tty: true
+    volumes:
+      - ./backend:/var/www/laravel:cached
+    ports:
+      - '8000:8000'
+    env_file:
+      - ./backend/.env
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql/mysql-server:5.7
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - '3306:3306'
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+    volumes:
+      - /var/lib/mysql
+    env_file:
+      - ./.env
+    networks:
+      - app-network
+
+volumes:
+  db-data:
+  
+networks:
+  app-network:
