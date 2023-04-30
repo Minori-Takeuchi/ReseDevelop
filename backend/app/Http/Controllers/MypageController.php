@@ -56,7 +56,6 @@ class MypageController extends Controller
                     ];
                 }
             return response()->json([
-                // 'user' => $userData,
                 'shops' => $shopsData,
                 'reservations' => $reservationsData,
             ], 200);

@@ -57,7 +57,6 @@ class ReservationController extends Controller
         $item = Reservation::where('id',$request->id)->update($form);
         if ($item) {
             return response()->json([
-                'reservation' => $item,
                 'message' => 'updated successfully'
             ],200);
         } else {

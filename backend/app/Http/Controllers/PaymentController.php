@@ -17,23 +17,26 @@ class PaymentController extends Controller
 
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
+        try {
             $paymentIntent = PaymentIntent::create([
                 'amount' => $amount,
                 'currency' => 'jpy',
                 'payment_method' => $paymentMethod,
                 'confirm' => true,
             ]);
-
-            if($paymentIntent->status === 'succeeded') {
-                return response()->json([
-                    'success' => true,
-                    'massage' => 'Payment successfully',
-                ],200);
-            } else {
-                return response()->json([
-                    'success' =>false,
-                    'massage' => 'Payment failed',
-                ],400);
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Payment successfully',
+            ],
+                200
+            );
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Payment failed: ' . $e->getMessage(),
+            ],
+                400
+            );
+        }
     }
 }

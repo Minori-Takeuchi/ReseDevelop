@@ -93,7 +93,7 @@ class ManagementController extends Controller
         } else {
             return response()->json([
                 'massage' => 'Not found'
-            ], 404);
+            ], 422);
         }
     }
 }

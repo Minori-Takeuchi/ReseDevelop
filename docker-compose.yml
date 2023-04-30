@@ -12,7 +12,7 @@ services:
       - ./frontend:/usr/src/app:cached
     command: sh -c 'yarn install && yarn run dev'
     ports:
-      - '3000:3000'
+      - '80:3000'
     tty: true
     env_file:
       - ./frontend/.env
@@ -36,19 +36,20 @@ services:
     image: mysql/mysql-server:5.7
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
-      - '3306:3306'
+      - '3000:3306'
     environment:
       TZ: Asia/Tokyo
-      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
-      MYSQL_DATABASE: '${DB_DATABASE}'
-      MYSQL_USER: '${DB_USERNAME}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD_TEST}'
+      MYSQL_DATABASE: '${DB_DATABASE_TEST}'
+      MYSQL_USER: '${DB_USERNAME_TEST}'
+      MYSQL_PASSWORD: '${DB_PASSWORD_TEST}'
     volumes:
       - /var/lib/mysql
     env_file:
       - ./.env
     networks:
       - app-network
+
 
 volumes:
   db-data:

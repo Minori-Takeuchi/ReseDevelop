@@ -4,6 +4,7 @@ FROM php:8.1-fpm-alpine
 RUN apk update && \
     apk add --no-cache \
     busybox-suid \
+    dcron \
     git \
     unzip \
     libzip-dev \
@@ -19,15 +20,32 @@ RUN apk update && \
     docker-php-ext-enable redis && \
     rm -rf /tmp/*
 
-COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY composer.json composer.lock /var/www/laravel/
+COPY .env /var/www/laravel/
+COPY .env.testing /var/www/laravel/
+COPY . /var/www/laravel/
+RUN chmod 666 /var/www/laravel/composer.lock
 
-COPY php.ini /etc/php/8.1/cli/conf.d/99-etc.ini
+COPY mycron /etc/cron.d/mycron
+RUN chmod 0644 /etc/cron.d/mycron
 
 ADD docker-entrypoint.sh ./
 RUN chmod +x ./docker-entrypoint.sh
+WORKDIR /var/www/laravel/
+RUN mkdir -p vendor && chown -R www-data:www-data vendor
+USER www-data
 
-WORKDIR /var/www/laravel
+RUN composer install --prefer-dist --no-progress --no-interaction
+
+
+USER root
+
+COPY php.ini /etc/php/8.1/cli/conf.d/99-etc.ini
+
+
+COPY --chown=www-data:www-data . /var/www/laravel
+
+RUN chown -R www-data:www-data /var/www/laravel/storage
+RUN chown -R www-data:www-data /var/www/laravel/bootstrap/cache
 CMD ["./docker-entrypoint.sh"]
-

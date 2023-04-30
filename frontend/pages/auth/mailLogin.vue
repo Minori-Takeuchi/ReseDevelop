@@ -31,9 +31,10 @@ export default {
       }
       const auth = getAuth();
       const actionCodeSettings = {
-        url: 'http://localhost:3000/',
+        url: this.$config.appUrl,
         handleCodeInApp: true
       }
+      console.log(actionCodeSettings)
       await sendSignInLinkToEmail(auth, this.email, actionCodeSettings)
         .then(() => {
           alert('認証メールを送信しました')

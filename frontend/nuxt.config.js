@@ -1,6 +1,7 @@
 export default {
   publicRuntimeConfig: {
     storageUrl: process.env.STORAGE_URL,
+    appUrl: process.env.APP_URL,
   },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
