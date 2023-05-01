@@ -5,9 +5,6 @@ jobs:
     docker:
       - image: docker/compose:1.27.4
         command: /bin/sh -c "apk add --no-cache docker-compose && docker-compose up --build --abort-on-container-exit"
-        environment:
-          - DOCKER_HOST=tcp://localhost:2375
-          - DOCKER_TLS_CERTDIR=
     working_directory: ~/repo
     steps:
       - checkout
