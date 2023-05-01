@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: docker:20.10.7
+      - image: docker/compose:1.27.4
         command: /bin/sh -c "apk add --no-cache docker-compose && docker-compose up --build --abort-on-container-exit"
         environment:
           - DOCKER_HOST=tcp://localhost:2375
