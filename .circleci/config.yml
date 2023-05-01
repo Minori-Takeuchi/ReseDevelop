@@ -15,13 +15,14 @@ jobs:
           name: base64 decode env file
           command: |
             echo $MYSQL_ENV_FILE | base64 -d > .env
+            echo $FRONTEND_ENV_FILE | base64 -d > ./frontend/.env
             echo $BACKEND_ENV_FILE | base64 -d > ./backend/.env
             echo $BACKEND_ENV_FILE_TESTING | base64 -d > ./backend/.env.testing
       - run:
           name: Run tests
           command: |
-            docker-compose up --build --abort-on-container-exit --no-deps backend mysql
-            while [[ $(docker-compose ps --filter "status=running" --quiet | wc -l) -lt 2 ]]; do sleep 1; done
+            docker-compose up --build -d
+            while [[ $(docker-compose ps --filter "status=running" --quiet | wc -l) -lt 3 ]]; do sleep 1; done
             docker-compose exec backend php artisan test
 workflows:
   version: 2
