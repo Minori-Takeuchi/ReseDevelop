@@ -14,9 +14,9 @@ jobs:
       - run:
           name: base64 decode env file
           command: |
-            echo $MYSQL_ENV_FILE | base64_decode > .env
-            echo $BACKEND_ENV_FILE | base64_decode > ./backend/.env
-            echo $BACKEND_ENV_FILE_TESTING | base64_decode > ./backend/.env.testing
+            echo $MYSQL_ENV_FILE | base64 -d > .env
+            echo $BACKEND_ENV_FILE | base64 -d > ./backend/.env
+            echo $BACKEND_ENV_FILE_TESTING | base64 -d > ./backend/.env.testing
       - run:
           name: Run tests
           command: |
