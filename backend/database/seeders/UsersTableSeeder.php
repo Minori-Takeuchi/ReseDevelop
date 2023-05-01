@@ -15,28 +15,28 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'id' => 'lO0IDo5g65eJyM5GodUANmlitQs2',
+            'id' => 'kT5sl5QZ4FS4XFvYb27LxgSuLS03',
             'name' => '管理者',
             'email' => 'admin@gest.com',
             'role' => 3,
         ];
         User::create($param);
         $param = [
-            'id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'name' => '店舗代表者',
             'email' => 'manager@gest.com',
             'role' => 2,
         ];
         User::create($param);
         $param = [
-            'id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'name' => '利用者1',
             'email' => 'gest@gest.com',
             'role' => 1,
         ];
         User::create($param);
         $param = [
-            'id' => 'ytRKpnzkxuaYwtgp3TTybTLseyy2',
+            'id' => 'E1YdKZ4jM9PDctkJOCCwZN62IqN2',
             'name' => '利用者2',
             'email' => 'gest2@gest.com',
             'role' => 1,

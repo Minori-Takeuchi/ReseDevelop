@@ -26,7 +26,7 @@ class AdministrationControllerTest extends TestCase
         $area = Area::create(['area' => '東京都']);
         $genre = Genre::create(['genre' => '寿司']);
         $shop = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'shop_name' => 'Sushi Place',
@@ -34,7 +34,7 @@ class AdministrationControllerTest extends TestCase
             'img' => 'sushi.jpg'
         ]);
         $like = Like::create([
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'shop_id' => $shop->id,
         ]);
 
@@ -53,7 +53,7 @@ class AdministrationControllerTest extends TestCase
                 ],
                 'managers' => [
                     [
-                        'id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+                        'id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
                         'name' => '店舗代表者',
                         'email' => 'manager@gest.com',
                         'shops' => [
@@ -67,7 +67,13 @@ class AdministrationControllerTest extends TestCase
                 ],
                 'users' => [
                     [
-                        'id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+                        'id' => 'E1YdKZ4jM9PDctkJOCCwZN62IqN2',
+                        'name' => '利用者2',
+                        'email' => 'gest2@gest.com',
+                        'likes' => []
+                    ],
+                    [
+                        'id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
                         'name' => '利用者1',
                         'email' => 'gest@gest.com',
                         'likes' => [
@@ -77,7 +83,7 @@ class AdministrationControllerTest extends TestCase
                                 'shop_id' => $like->shop_id,
                             ]
                         ]
-                    ]
+                    ],
                 ]
             ]);
     }

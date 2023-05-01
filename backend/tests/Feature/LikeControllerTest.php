@@ -25,7 +25,7 @@ class LikeControllerTest extends TestCase
         $area = Area::create(['area' => '東京都']);
         $genre = Genre::create(['genre' => '寿司']);
         $shop = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'shop_name' => 'Sushi Place',
@@ -33,7 +33,7 @@ class LikeControllerTest extends TestCase
             'img' => 'sushi.jpg'
         ]);
         $data = [
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'shop_id' => $shop->id,
         ];
 
@@ -42,7 +42,7 @@ class LikeControllerTest extends TestCase
         $response->assertStatus(201);
 
         $this->assertDatabaseHas('likes', [
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'shop_id' => $shop->id,
         ]);
     }
@@ -51,7 +51,7 @@ class LikeControllerTest extends TestCase
         $area = Area::create(['area' => '東京都']);
         $genre = Genre::create(['genre' => '寿司']);
         $shop = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'shop_name' => 'Sushi Place',
@@ -59,7 +59,7 @@ class LikeControllerTest extends TestCase
             'img' => 'sushi.jpg'
         ]);
         $like = Like::create([
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'shop_id' => $shop->id,
         ]);
         $data = ['id' => $like->id];
@@ -85,7 +85,7 @@ class LikeControllerTest extends TestCase
         $area = Area::create(['area' => '東京都']);
         $genre = Genre::create(['genre' => '寿司']);
         $shop = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'shop_name' => 'Sushi Place',
@@ -93,7 +93,7 @@ class LikeControllerTest extends TestCase
             'img' => 'sushi.jpg'
         ]);
         $like = Like::create([
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'shop_id' => $shop->id,
         ]);
         $data = ['user_id' => $like->user_id];

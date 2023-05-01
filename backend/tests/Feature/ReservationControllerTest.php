@@ -26,7 +26,7 @@ class ReservationControllerTest extends TestCase
         $area = Area::create(['area' => '東京都']);
         $genre = Genre::create(['genre' => '寿司']);
         $shop = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'shop_name' => 'Sushi Place',
@@ -39,7 +39,7 @@ class ReservationControllerTest extends TestCase
             'price' => 1000
         ]);
         $data = [
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'course_id' => $course->id,
             'date' => '2024-04-29',
             'time' => '12:00',
@@ -50,7 +50,7 @@ class ReservationControllerTest extends TestCase
         $response->assertStatus(201);
 
         $this->assertDatabaseHas('reservations', [
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'course_id' => $course->id,
             'datetime' => '2024-04-29 12:00:00',
             'number' => 5,
@@ -60,7 +60,7 @@ class ReservationControllerTest extends TestCase
     public function testStoreWithInvalidData()
     {
         $data = [
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'date' => '2024-04-29',
             'time' => '12:00',
             'number' => 5,
@@ -80,7 +80,7 @@ class ReservationControllerTest extends TestCase
             ]);
 
         $this->assertDatabaseMissing('reservations', [
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'datetime' => '2024-04-29 12:00:00',
             'number' => 5,
         ]);
@@ -91,7 +91,7 @@ class ReservationControllerTest extends TestCase
         $area = Area::create(['area' => '東京都']);
         $genre = Genre::create(['genre' => '寿司']);
         $shop = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'shop_name' => 'Sushi Place',
@@ -104,7 +104,7 @@ class ReservationControllerTest extends TestCase
             'price' => 1000
         ]);
         $reservation = Reservation::create([
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'course_id' => $course->id,
             'datetime' => '2024-04-29 12:00:00',
             'number' => 5,
@@ -132,7 +132,7 @@ class ReservationControllerTest extends TestCase
         $area = Area::create(['area' => '東京都']);
         $genre = Genre::create(['genre' => '寿司']);
         $shop = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'shop_name' => 'Sushi Place',
@@ -145,7 +145,7 @@ class ReservationControllerTest extends TestCase
             'price' => 1000
         ]);
         $reservation = Reservation::create([
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'course_id' => $course->id,
             'datetime' => '2024-04-29 12:00:00',
             'number' => 5,
@@ -165,7 +165,7 @@ class ReservationControllerTest extends TestCase
 
         $this->assertDatabaseHas('reservations', [
             'id' => $reservation->id,
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'course_id' => $course->id,
             'datetime' => '2024-04-30 13:00:00',
             'number' => 3,

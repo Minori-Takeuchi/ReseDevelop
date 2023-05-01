@@ -28,7 +28,7 @@ class ShopControllerTest extends TestCase
         $genre1 = Genre::create(['genre' => '寿司']);
         $genre2 = Genre::create(['genre' => 'イタリアン']);
         $shop1 = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area1->id,
             'genre_id' => $genre1->id,
             'shop_name' => 'Sushi Place',
@@ -36,7 +36,7 @@ class ShopControllerTest extends TestCase
             'img' => 'sushi.jpg'
         ]);
         $shop2 = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area2->id,
             'genre_id' => $genre2->id,
             'shop_name' => 'Pasta Place',
@@ -96,7 +96,7 @@ class ShopControllerTest extends TestCase
         $area1 = Area::create(['area' => '東京都']);
         $genre1 = Genre::create(['genre' => '寿司']);
         $shop = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area1->id,
             'genre_id' => $genre1->id,
             'shop_name' => 'Sushi Place',

@@ -29,7 +29,7 @@ class ManagementControllerTest extends TestCase
         $area = Area::create(['area' => '東京都']);
         $genre = Genre::create(['genre' => '寿司']);
         $shop = Shop::create([
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'shop_name' => 'Sushi Place',
@@ -42,16 +42,16 @@ class ManagementControllerTest extends TestCase
             'price' => 1000
         ]);
         $reservation = Reservation::create([
-            'user_id' => 'OHDQrOCGleXcGIaTKhLKSQzfNQG3',
+            'user_id' => 'pFlEMCwGJmNI8RvpBTLgFbOiTic2',
             'course_id' => $course->id,
             'datetime' => '2024-04-29 12:00:00',
             'number' => 5,
         ]);
-        $response = $this->getJson("/api/manager/15O7exnOGNTe4BcxuZsadKcXBGk1");
+        $response = $this->getJson("/api/manager/ySbOMTep1fQTTJ60JjImbDkrhPY2");
         $response->assertOk()
             ->assertJson([
                 'manager' => [
-                    'id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+                    'id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
                     'name' => '店舗代表者',
                 ],
                 'shops' => [
@@ -99,7 +99,7 @@ class ManagementControllerTest extends TestCase
         $genre = Genre::create(['genre' => '寿司']);
         $file = UploadedFile::fake()->create('test.jpg');
         $data = [
-                'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+                'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
                 'area_id' => $area->id,
                 'genre_id' => $genre->id,
                 'shop_name' => 'Sushi Place',
@@ -117,7 +117,7 @@ class ManagementControllerTest extends TestCase
         $area = Area::create(['area' => '東京都']);
         $genre = Genre::create(['genre' => '寿司']);
         $response = $this->postJson('/api/manager', [
-            'manager_id' => '15O7exnOGNTe4BcxuZsadKcXBGk1',
+            'manager_id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'shop_name' => '',

@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: docker:20.10.7
+        command: /bin/sh -c "apk add --no-cache docker-compose && docker-compose up --build --abort-on-container-exit"
+        environment:
+          - DOCKER_HOST=tcp://localhost:2375
+          - DOCKER_TLS_CERTDIR=
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: base64 decode env file
+          command: echo $MYSQL_ENV_FILE | base64 -di > .env
+          command: echo $BACKEND_ENV_FILE | base64 -di > ./backend/.env
+          command: echo $BACKEND_ENV_FILE_TESTING | base64 -di > ./backend/.env.testing
+      - run:
+          name: Run tests
+          command: |
+            docker-compose up --build -d
+            while [[ $(docker-compose ps --filter "status=running" --quiet | wc -l) -lt 3 ]]; do sleep 1; done
+            docker-compose exec backend php artisan test
+
