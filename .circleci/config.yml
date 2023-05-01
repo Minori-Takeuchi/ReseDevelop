@@ -20,8 +20,8 @@ jobs:
       - run:
           name: Run tests
           command: |
-            docker-compose up --build -d
-            while [[ $(docker-compose ps --filter "status=running" --quiet | wc -l) -lt 3 ]]; do sleep 1; done
+            docker-compose up --build --abort-on-container-exit --no-deps backend mysql
+            while [[ $(docker-compose ps --filter "status=running" --quiet | wc -l) -lt 2 ]]; do sleep 1; done
             docker-compose exec backend php artisan test
 workflows:
   version: 2
