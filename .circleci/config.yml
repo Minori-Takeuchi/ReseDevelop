@@ -39,7 +39,7 @@ jobs:
       - run:
           name: base64 decode env file
           command:
-            echo $BACKEND_ENV_TESTING | tr -d '\n' | base64 -d > ./backend/.env.testing
+            echo $BACKEND_ENV_TESTING | base64 -d > ./backend/.env.testing
 
       - run:
           name: Wait for db
