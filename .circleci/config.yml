@@ -6,6 +6,11 @@ jobs:
       - image: cimg/php:8.2.5
       - image: cimg/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
+    environment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:rZO/6rNt/Vdk2Imcxyg/UA9a0+h6idMNLvJQlKkP10Y=
+      - DB_CONNECTION: circleci
 
     working_directory: ~/repo
 
@@ -39,7 +44,7 @@ jobs:
       - run:
           name: base64 decode env file
           command: |
-            echo "$BACKEND_ENV_TESTING" | base64 -d > ./backend/.env.testing
+            echo "$BACKEND_ENV_FILE" | base64 -d > ./backend/.env.testing
 
       - run:
           name: Wait for db
