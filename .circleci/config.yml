@@ -1,26 +1,59 @@
 version: 2.1
 
 jobs:
-  test:
+  build:
     docker:
-      - image: docker/compose:1.27.4
-        command: /bin/sh -c "apk add --no-cache docker-compose && docker-compose up --build --abort-on-container-exit"
+      - image: circleci/php:7.3-stretch-node-browsers
+      - image: circleci/mysql:8.0.17
+        command: mysqld --default-authentication-plugin=mysql_native_password
+
     working_directory: ~/repo
+
     steps:
       - checkout
       - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
+
+      - run:
+          name: Install PHP Extensions
+          command: sudo docker-php-ext-install pdo_mysql
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "backend/composer.json" }}
+            - v1-dependencies-
+
+      - run:
+          name: composer install
+          working_directory: backend
+          command: composer install -n --prefer-dist
+
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "buckend/composer.json" }}
+          
+      - run:
           name: base64 decode env file
-          command: |
-            echo $MYSQL_ENV_FILE | base64 -d > .env
-            echo $FRONTEND_ENV_FILE | base64 -d > ./frontend/.env
-            echo $BACKEND_ENV_FILE | base64 -d > ./backend/.env
-            echo $BACKEND_ENV_FILE_TESTING | base64 -d > ./backend/.env.testing
+          command:
+            echo $BACKEND_ENV_TESTING_FILE | base64 -d > ./backend/.env.testing
+
+      - run:
+          name: Wait for db
+          command: dockerize -wait tcp\://localhost:3306 -timeout 1m
+
+      - run:
+          name: Migration
+          working_directory: backend
+          command: sudo php artisan migrate --env=testing
+
       - run:
           name: Run tests
-          command: |
-            docker-compose up --build -d
-            while [[ $(docker-compose ps --filter "status=running" --quiet | wc -l) -lt 3 ]]; do sleep 1; done
-            docker-compose exec backend php artisan test
+          working_directory: backend
+          command: sudo php artisan test
 workflows:
   version: 2
   test:
