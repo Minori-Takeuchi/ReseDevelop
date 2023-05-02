@@ -4,6 +4,7 @@ jobs:
   test:
     docker:
       - image: cimg/php:8.2.5
+      - name: mysql
       - image: cimg/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
@@ -44,7 +45,7 @@ jobs:
       - run:
           name: base64 decode env file
           command: |
-            echo "$BACKEND_ENV_FILE" | base64 -d > ./backend/.env.testing
+            echo "$ENV_FILE" | base64 -d > ./backend/.env.testing
 
       - run:
           name: Wait for db
