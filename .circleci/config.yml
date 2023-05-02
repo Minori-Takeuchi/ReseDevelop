@@ -4,7 +4,7 @@ jobs:
   test:
     docker:
       - image: cimg/php:8.2.5
-      - name: mysql
+      - name: circle_test
         image: cimg/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
@@ -49,7 +49,7 @@ jobs:
 
       - run:
           name: Wait for db
-          command: dockerize -wait tcp\://localhost:3306 -timeout 1m
+          command: dockerize -wait tcp\://circle_test:3306 -timeout 1m
 
       - run:
           name: Migration
