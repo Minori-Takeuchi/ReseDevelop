@@ -34,12 +34,12 @@ jobs:
       - save_cache:
           paths:
             - ./vendor
-          key: v1-dependencies-{{ checksum "buckend/composer.json" }}
+          key: v1-dependencies-{{ checksum "backend/composer.json" }}
           
       - run:
           name: base64 decode env file
           command:
-            echo $BACKEND_ENV_TESTING_FILE | base64 -d > ./backend/.env.testing
+            echo $BACKEND_ENV_TESTING_FILE | tr -d '\n' | base64 -d > ./backend/.env.testing
 
       - run:
           name: Wait for db
