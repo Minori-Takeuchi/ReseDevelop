@@ -68,7 +68,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: f8:14:34:f4:7c:b4:ad:03:0b:82:a6:82:d1:7c:29:c3
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /home/ec2-user/Rese/ && git pull'
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /home/ec2-user/Rese/ && git pull --merge'
 
 workflows:
   version: 2.1
