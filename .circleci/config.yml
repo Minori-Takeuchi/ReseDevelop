@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-code-deploy: circleci/aws-code-deploy
+
 jobs:
   test:
     docker:
@@ -60,12 +63,34 @@ jobs:
           name: Run tests
           working_directory: backend
           command: sudo php artisan test
+
+  deploy:
+    executor: aws-code-deploy/default
+    steps:
+      - checkout
+      - aws-code-deploy/deploy:
+          application: your-application-name
+          deployment-group: your-deployment-group-name
+          region: your-region
+          revision-location:
+            revisionType: github
+            github: 
+              owner: your-github-owner-name
+              repo: your-github-repo-name
+              tag: your-github-tag
 workflows:
   version: 2
-  test:
+  test_and_deploy:
     jobs:
       - test:
           filters:
             branches:
               only:
                 - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - main
