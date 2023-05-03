@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  aws-code-deploy: circleci/aws-code-deploy
-
 jobs:
   test:
     docker:
@@ -65,32 +62,22 @@ jobs:
           command: sudo php artisan test
 
   deploy:
-    executor: aws-code-deploy/default
+    machine:
+      image: ubuntu-2204:2023.04.2
     steps:
       - checkout
-      - aws-code-deploy/deploy:
-          application: your-application-name
-          deployment-group: your-deployment-group-name
-          region: your-region
-          revision-location:
-            revisionType: github
-            github: 
-              owner: your-github-owner-name
-              repo: your-github-repo-name
-              tag: your-github-tag
+      - add_ssh_keys:
+          fingerprints: f8:14:34:f4:7c:b4:ad:03:0b:82:a6:82:d1:7c:29:c3
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /home/ec2-user/ && git pull'
+
 workflows:
-  version: 2
+  version: 2.1
   test_and_deploy:
     jobs:
       - test:
-          filters:
-            branches:
-              only:
-                - test
       - deploy:
           requires:
             - test
           filters:
             branches:
-              only:
-                - main
+              only: test
