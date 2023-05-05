@@ -14,10 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->tinyInteger('role')->default(1)->comment('1:利用者,2:店舗代表者,3:管理者');
-            $table->string('name')->nullable(false);
-            $table->string('email')->nullable(false);
+            $table->string('id',191)->primary();
+            $table->tinyInteger('role')->default(1)->nullable(false)->comment('1:利用者,2:店舗代表者,3:管理者');
+            $table->string('name',191)->nullable(false);
+            $table->string('email',191)->nullable(false)->unique();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

@@ -19,11 +19,6 @@
 ## アプリケーションURL
 http://ec2-13-115-211-191.ap-northeast-1.compute.amazonaws.com/  
 
-
-## 他のリポジトリ
-開発環境用  
-http://ec2-43-207-231-207.ap-northeast-1.compute.amazonaws.com/  
-
 ## 機能一覧
 ユーザー認証機能  
 メールログイン機能  
@@ -32,7 +27,7 @@ http://ec2-43-207-231-207.ap-northeast-1.compute.amazonaws.com/
 予約,予約日時変更,取り消し機能  
 予約用QRコード表示  
 店舗評価機能  
-予約リマインダーメール機能（開発環境の為、1分おきにメール送信します。設定の変更はbackend/mycronの設定を変更してください）  
+予約リマインダーメール機能  
   
 *管理者用*  
 店舗代表者作成機能  
@@ -42,11 +37,11 @@ http://ec2-43-207-231-207.ap-northeast-1.compute.amazonaws.com/
 店舗作成機能  
 代表店舗の予約確認  
 
-
 ## 使用技術（実行環境）
 AWS EC2: Amazon Linux2  
 Docker: 20.10.23  
 Docker Compose: 2.17.3  
+git : 2.39.2  
 フロントエンド: Nuxt.js 2.15.8  
 バックエンド: Laravel 8.x  
 firebase: 9.19.1  
@@ -71,8 +66,10 @@ firebase: 9.19.1
 
 
 ## 環境構築
-・サーバーにDocker,Docker Composeをインストールしてください。   
-・.env.exampleを.envにコピーし、環境設定を行ってください。    
+・サーバーにDocker,Docker Compose,gitをインストールしてください。   
+・.env.exampleを.envと.env.testingにコピーし、環境設定を行ってください。   
+・circleCiにてテストと自動デプロイを設定する場合は環境設定を行って下さい。 
+・リマインダーメール設定はbackend/mycronで変更可能です。　　
 
 *テストデータ準備*
 UsersTableSeeder , AreasTableSeeder , GenresTableSeeder　, ShopsTableSeeder , CoursesTableSeeder  php artisan db:seed  
@@ -85,7 +82,7 @@ UsersTableSeeder , AreasTableSeeder , GenresTableSeeder　, ShopsTableSeeder , C
 (UsersTableSeederへ登録済み)
 
 管理者　　　メールアドレス：admin@gest.com　パスワード：adminpass  
-店舗代表者　メールアドレス：manager@gest.com　パスワード：managerpass  
+店舗代表者　メールアドレス：manager@gest.manager.com　パスワード：managerpass  
 ユーザー1　 メールアドレス：gest@gest.com　パスワード：gestpass  
 ユーザー2　 メールアドレス：gest2@gest.com　パスワード：gestpass  
 

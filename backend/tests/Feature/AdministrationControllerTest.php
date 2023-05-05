@@ -55,7 +55,7 @@ class AdministrationControllerTest extends TestCase
                     [
                         'id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
                         'name' => '店舗代表者',
-                        'email' => 'manager@gest.com',
+                        'email' => 'manager@gest.manager.com',
                         'shops' => [
                             [
                                 'id' => $shop->id,

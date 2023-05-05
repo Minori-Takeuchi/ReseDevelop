@@ -45,7 +45,7 @@ export default {
     },
     async unLike() {
       try {
-        if (this.$auth.loggedIn) {
+        if (this.$store.state.user) {
           await this.$axios.delete("/api/like/" + this.shop.like_id);
           const sendData = this.shop.id
           this.$emit('unLiked', sendData)

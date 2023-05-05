@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
         $param = [
             'id' => 'ySbOMTep1fQTTJ60JjImbDkrhPY2',
             'name' => '店舗代表者',
-            'email' => 'manager@gest.com',
+            'email' => 'manager@gest.manager.com',
             'role' => 2,
         ];
         User::create($param);

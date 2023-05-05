@@ -82,8 +82,18 @@ export default {
     },
     // 予約削除
     handleUnReserved(sendData) {
-      const index = this.futureReservations.findIndex(r => r.id === sendData)
-      this.futureReservations.splice(index,1)
+      const futureIndex = this.futureReservations.findIndex(r => r.id === sendData)
+      if (futureIndex >= 0) {
+        this.futureReservations.splice(futureIndex, 1)
+      }
+      const todayIndex = this.todayReservations.findIndex(r => r.id === sendData)
+      if (todayIndex >= 0) {
+        this.todayReservations.splice(todayIndex, 1)
+      }
+      const pastIndex = this.pastReservations.findIndex(r => r.id === sendData)
+      if (pastIndex >= 0) {
+        this.pastReservations.splice(pastIndex, 1)
+      }
     },
     // お気に入り解除
     handleUnLiked(sendData) {

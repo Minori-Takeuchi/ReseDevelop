@@ -34,7 +34,6 @@ export default {
         url: this.$config.appUrl,
         handleCodeInApp: true
       }
-      console.log(actionCodeSettings)
       await sendSignInLinkToEmail(auth, this.email, actionCodeSettings)
         .then(() => {
           alert('認証メールを送信しました')

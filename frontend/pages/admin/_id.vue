@@ -64,6 +64,7 @@ export default {
         alert('メールを送信しました')
         console.log(data.message)
       } catch (error) {
+        alert('メールの送信に失敗しました')
         console.log(error)
       }
     }

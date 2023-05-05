@@ -52,12 +52,23 @@
       </tr>
     </table>
     <ModalMenu v-if="selectShop">
-        <p>{{ selectShop.shop_name }} の予約一覧</p>
-        <div  v-for="reservation in selectShop.reservations" :key="reservation.id">
-          <p>{{ reservation }}</p>
-        </div>
-        <button @click="closeReservations">店舗一覧へ</button>
-      </ModalMenu>
+      <p class="manager-ttl">{{ selectShop.shop_name }} の予約一覧</p>
+      <table class="manager-table">
+        <tr>
+          <th>予約ID</th>
+          <th>予約日時</th>
+          <th>予約人数</th>
+          <th>コース</th>
+        </tr>
+        <tr  v-for="reservation in selectShop.reservations" :key="reservation.id">
+          <td>{{ reservation.id }}</td>
+          <td>{{ reservation.date }}{{ reservation.time }}</td>
+          <td>{{ reservation.user_name }}</td>
+          <td>{{ reservation.course }}</td>
+        </tr>
+      </table>
+      <button @click="closeReservations" class="reservation-btn close-btn">店舗一覧へ</button>
+    </ModalMenu>
   </div>
 </template>
 <script>
@@ -253,6 +264,10 @@ export default {
   cursor: pointer;
   height: 28px;
   border: none;
+}
+.close-btn {
+  display: block;
+  margin: 0 auto;
 }
 .error {
   color: red;
