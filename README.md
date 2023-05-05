@@ -58,12 +58,11 @@ firebase: 9.19.1
 
 
 ## テーブル設計
-![tables](https://user-images.githubusercontent.com/119908511/233911233-42fbbd3e-9f8d-4776-ad77-9c7d6a7b7b27.png)
+![tables](https://user-images.githubusercontent.com/119908511/236488151-e3285cc0-b51d-43ac-9384-026f578c7c82.png)
 
 
 ## ER図
-![ER](https://user-images.githubusercontent.com/119908511/233911244-2001d6ac-b3aa-4f40-8ab0-15ad10ca4704.png)
-
+![ER](https://user-images.githubusercontent.com/119908511/236488097-7bd45a53-1813-4413-a79a-0c2eaa440cbb.png)
 
 ## 環境構築
 ・サーバーにDocker,Docker Compose,gitをインストールしてください。   
