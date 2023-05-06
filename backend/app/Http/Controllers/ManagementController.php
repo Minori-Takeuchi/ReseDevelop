@@ -26,23 +26,26 @@ class ManagementController extends Controller
                 'name' => $manager->name,
             ];
             $shopsData = [];
+            $reservationsData = [];
             foreach ($manager->shops as $shop) {
                 foreach($shop->courses as $course) {
-                    $reservationsData = [];
                     foreach ($course->reservations as $reservation) {
                         $courseData = Course::find($reservation->course_id);
-
+                        
+                        $now = new DateTime();
                         $datetime = new DateTime($reservation->datetime);
-                        $date = $datetime->format('Y-m-d');
-                        $time = $datetime->format('H:i');
-                        $reservationsData[] = [
-                            'id' => $reservation->id,
-                            'date' => $date,
-                            'time' => $time,
-                            'number' => $reservation->number,
-                            'user_name' => $reservation->user->name,
-                            'course' => $courseData->course,
-                        ];
+                        if($datetime > $now) {
+                            $date = $datetime->format('Y-m-d');
+                            $time = $datetime->format('H:i');
+                            $reservationsData[] = [
+                                'id' => $reservation->id,
+                                'date' => $date,
+                                'time' => $time,
+                                'number' => $reservation->number,
+                                'user_name' => $reservation->user->name,
+                                'course' => $courseData->course,
+                            ];
+                        }
                     }
                 }
                 $shopsData[] = [

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h2 class="ttl">店舗代表者用</h2>
     <p class="username">{{ $store.state.user.name }}さん</p>
     <div class="shop-create">
@@ -62,7 +62,7 @@
         </tr>
         <tr  v-for="reservation in selectShop.reservations" :key="reservation.id">
           <td>{{ reservation.id }}</td>
-          <td>{{ reservation.date }}{{ reservation.time }}</td>
+          <td>{{ reservation.date }} {{ reservation.time }}</td>
           <td>{{ reservation.user_name }}</td>
           <td>{{ reservation.course }}</td>
         </tr>
