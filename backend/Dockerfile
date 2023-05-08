@@ -1,6 +1,11 @@
 # backend Dockerfile
 FROM php:8.1-fpm-alpine
 
+RUN apk add --no-cache tzdata && \
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+    echo "Asia/Tokyo" > /etc/timezone && \
+    apk del tzdata
+
 RUN apk update && \
     apk add --no-cache \
     busybox-suid \
@@ -27,8 +32,11 @@ COPY .env.testing /var/www/laravel/
 COPY . /var/www/laravel/
 RUN chmod 666 /var/www/laravel/composer.lock
 
+RUN touch /var/log/cron.log
 COPY mycron /etc/cron.d/mycron
 RUN chmod 0644 /etc/cron.d/mycron
+
+CMD ["crond", "-f"]
 
 ADD docker-entrypoint.sh ./
 RUN chmod +x ./docker-entrypoint.sh

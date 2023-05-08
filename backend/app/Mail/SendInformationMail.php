@@ -30,7 +30,7 @@ class SendInformationMail extends Mailable
      */
     public function build()
     {
-        return $this->from('rese.service215@gmail.com')
+        return $this->from('rese.service159@gmail.com')
         ->subject('-Rese- 店舗をお気に入り登録できます')
         ->view('emails.information-mail')
         ->with([

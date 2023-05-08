@@ -26,12 +26,11 @@ class ManagementController extends Controller
                 'name' => $manager->name,
             ];
             $shopsData = [];
-            $reservationsData = [];
             foreach ($manager->shops as $shop) {
                 foreach($shop->courses as $course) {
+                    $reservationsData = [];
                     foreach ($course->reservations as $reservation) {
                         $courseData = Course::find($reservation->course_id);
-                        
                         $now = new DateTime();
                         $datetime = new DateTime($reservation->datetime);
                         if($datetime > $now) {
