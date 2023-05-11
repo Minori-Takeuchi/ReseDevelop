@@ -17,7 +17,8 @@
 事前決済・評価もできる予約サービスです。  
 
 ## アプリケーションURL
-http://ec2-13-115-211-191.ap-northeast-1.compute.amazonaws.com/  
+http://ec2-13-115-211-191.ap-northeast-1.compute.amazonaws.com/ 　　
+※現在は休止中です　　
 
 ## 機能一覧
 ユーザー認証機能  
